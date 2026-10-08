@@ -1,0 +1,6 @@
+{
+  "name": "TalentPulse - Open-Source Employee Performance & ML Predictor",
+  "description": "End-to-end employee performance analysis, SQL metric storage, and machine learning prediction platform built on 100% free, open-source stack.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
