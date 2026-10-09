@@ -11,6 +11,8 @@ import {
   ArrowRight,
   TrendingUp,
   AlertTriangle,
+  Award,
+  Users,
   Clock,
   Search
 } from 'lucide-react';
@@ -107,28 +109,28 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-indigo-100/60">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-slate-900">
             Workforce Performance Dashboard
           </h1>
           <div className="flex items-center gap-2 text-xs text-slate-500 mt-1">
-            <span>Real-time Metrics</span>
-            <span aria-hidden="true">·</span>
-            <span className="font-mono tabular-nums font-semibold text-slate-800">
-              {employees.length} Total Workforce Profiles
+            <span className="font-medium text-indigo-600/80">Continuous Intelligence</span>
+            <span aria-hidden="true" className="text-slate-300">·</span>
+            <span className="font-mono tabular-nums font-semibold text-slate-700">
+              {employees.length} Total Profiles
             </span>
-            <span aria-hidden="true">·</span>
-            <span>All Employees Displayed Below</span>
+            <span aria-hidden="true" className="text-slate-300">·</span>
+            <span>All Records Synced</span>
           </div>
         </div>
 
         <div className="flex items-center gap-2.5">
           <button
             onClick={onOpenAddEmployee}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer shadow-xs focus-visible:outline-none"
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 rounded-xl transition-all cursor-pointer shadow-xs shadow-indigo-500/25 hover:shadow-indigo-500/35 focus-visible:outline-none"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Employee</span>
@@ -136,73 +138,83 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
         </div>
       </div>
 
-      {/* 4 Clean Metric Cards */}
+      {/* 4 Aesthetic Light Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Metric 1: Headcount */}
-        <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+        <div className="bg-white/90 backdrop-blur-xs p-5 rounded-2xl border border-indigo-100/80 shadow-[0_4px_20px_-4px_rgba(79,70,229,0.04)] hover:shadow-md hover:border-indigo-200 transition-all">
           <div className="flex items-center justify-between text-xs text-slate-500">
-            <span>Workforce Size</span>
-            <span className="font-mono tabular-nums text-slate-700">Active</span>
+            <span className="font-semibold text-slate-600">Active Workforce</span>
+            <span className="w-7 h-7 rounded-xl bg-indigo-50 text-indigo-600 border border-indigo-100/70 flex items-center justify-center">
+              <Users className="w-3.5 h-3.5" />
+            </span>
           </div>
-          <div className="mt-2 text-3xl font-bold font-mono tabular-nums text-slate-900">
+          <div className="mt-2 text-3xl font-bold font-display font-mono tabular-nums text-slate-900">
             {stats.totalEmployees}
           </div>
-          <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 flex justify-between">
-            <span>Department Scope</span>
-            <span className="font-medium text-slate-700">{selectedDept}</span>
+          <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 flex justify-between items-center">
+            <span>Filtered Scope</span>
+            <span className="font-semibold text-indigo-700 bg-indigo-50/80 px-2 py-0.5 rounded-md text-[11px] border border-indigo-100/60">
+              {selectedDept}
+            </span>
           </div>
         </div>
 
         {/* Metric 2: Average Performance */}
-        <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+        <div className="bg-white/90 backdrop-blur-xs p-5 rounded-2xl border border-emerald-100/80 shadow-[0_4px_20px_-4px_rgba(16,185,129,0.04)] hover:shadow-md hover:border-emerald-200 transition-all">
           <div className="flex items-center justify-between text-xs text-slate-500">
-            <span>Average Score</span>
-            <span className="text-emerald-600 font-medium font-mono tabular-nums">Benchmark &ge; 4.0</span>
+            <span className="font-semibold text-slate-600">Average Performance</span>
+            <span className="w-7 h-7 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100/70 flex items-center justify-center">
+              <TrendingUp className="w-3.5 h-3.5" />
+            </span>
           </div>
           <div className="mt-2 flex items-baseline gap-1.5">
-            <span className="text-3xl font-bold font-mono tabular-nums text-slate-900">
+            <span className="text-3xl font-bold font-display font-mono tabular-nums text-slate-900">
               {stats.avgPerf}
             </span>
             <span className="text-xs text-slate-400 font-mono">/ 5.00</span>
           </div>
-          <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 flex justify-between">
-            <span>Rating Scale</span>
-            <span className="font-mono text-slate-700">1.00 - 5.00</span>
+          <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 flex justify-between items-center">
+            <span>Target Benchmark</span>
+            <span className="font-semibold text-emerald-700 bg-emerald-50/80 px-2 py-0.5 rounded-md text-[11px] border border-emerald-100/60">
+              &ge; 4.0 Meets/Exceeds
+            </span>
           </div>
         </div>
 
         {/* Metric 3: On-Time Delivery */}
-        <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+        <div className="bg-white/90 backdrop-blur-xs p-5 rounded-2xl border border-sky-100/80 shadow-[0_4px_20px_-4px_rgba(14,165,233,0.04)] hover:shadow-md hover:border-sky-200 transition-all">
           <div className="flex items-center justify-between text-xs text-slate-500">
-            <span>On-Time Delivery</span>
-            <span className="text-indigo-600 font-medium font-mono tabular-nums">{stats.avgOnTime}% avg</span>
+            <span className="font-semibold text-slate-600">Sprint On-Time %</span>
+            <span className="w-7 h-7 rounded-xl bg-sky-50 text-sky-600 border border-sky-100/70 flex items-center justify-center">
+              <Clock className="w-3.5 h-3.5" />
+            </span>
           </div>
-          <div className="mt-2 text-3xl font-bold font-mono tabular-nums text-slate-900">
+          <div className="mt-2 text-3xl font-bold font-display font-mono tabular-nums text-slate-900">
             {stats.avgOnTime}%
           </div>
-          <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 flex justify-between">
+          <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 flex justify-between items-center">
             <span>Milestones Met</span>
-            <span className="font-medium text-slate-700">Sprint Tracking</span>
+            <span className="font-semibold text-sky-700 bg-sky-50/80 px-2 py-0.5 rounded-md text-[11px] border border-sky-100/60">
+              Sprint Delivery
+            </span>
           </div>
         </div>
 
         {/* Metric 4: Risk & Promotion */}
-        <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+        <div className="bg-white/90 backdrop-blur-xs p-5 rounded-2xl border border-rose-100/80 shadow-[0_4px_20px_-4px_rgba(244,63,94,0.04)] hover:shadow-md hover:border-rose-200 transition-all">
           <div className="flex items-center justify-between text-xs text-slate-500">
-            <span>Attrition Risk Alert</span>
-            {stats.highRiskCount > 0 ? (
-              <span className="text-rose-600 font-medium font-mono tabular-nums">{stats.highRiskCount} cases</span>
-            ) : (
-              <span className="text-emerald-600 font-medium">Optimal</span>
-            )}
+            <span className="font-semibold text-slate-600">Attrition Alerts</span>
+            <span className="w-7 h-7 rounded-xl bg-rose-50 text-rose-600 border border-rose-100/70 flex items-center justify-center">
+              <AlertTriangle className="w-3.5 h-3.5" />
+            </span>
           </div>
-          <div className="mt-2 text-3xl font-bold font-mono tabular-nums text-slate-900">
+          <div className="mt-2 text-3xl font-bold font-display font-mono tabular-nums text-slate-900">
             {stats.highRiskCount}
           </div>
-          <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 flex justify-between">
-            <span>Promotion Candidates</span>
-            <span className="font-mono tabular-nums font-semibold text-indigo-700">
-              {stats.promotionCount} ready
+          <div className="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 flex justify-between items-center">
+            <span>Promotion Pipeline</span>
+            <span className="font-semibold text-violet-700 bg-violet-50/80 px-2 py-0.5 rounded-md text-[11px] border border-violet-150/70 font-mono">
+              {stats.promotionCount} Candidates
             </span>
           </div>
         </div>
@@ -211,41 +223,41 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
       {/* Department Breakdown & Quick Predictor Callout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Department Overview */}
-        <div className="lg:col-span-2 bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
-          <div className="flex items-center justify-between mb-4">
+        <div className="lg:col-span-2 bg-white/95 backdrop-blur-xs p-6 rounded-2xl border border-indigo-100/70 shadow-[0_4px_20px_-4px_rgba(79,70,229,0.03)]">
+          <div className="flex items-center justify-between mb-5">
             <div>
-              <h2 className="text-sm font-semibold text-slate-900">
-                Department Performance Breakdown
+              <h2 className="text-sm font-semibold font-display text-slate-900">
+                Department Performance Benchmarks
               </h2>
               <p className="text-xs text-slate-500 mt-0.5">
-                Composite evaluation scores across business divisions
+                Evaluation score averages and project throughput by department
               </p>
             </div>
             <button
               onClick={onNavigateToSql}
-              className="text-xs font-medium text-slate-600 hover:text-slate-900 inline-flex items-center gap-1 cursor-pointer"
+              className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 inline-flex items-center gap-1 cursor-pointer transition-colors"
             >
-              <span>View SQL Metrics</span>
+              <span>SQL Metrics</span>
               <ArrowRight className="w-3 h-3" />
             </button>
           </div>
 
-          <div className="space-y-3.5">
+          <div className="space-y-4">
             {departmentStats.map(item => {
               const widthPct = Math.min(100, (item.avgScore / 5.0) * 100);
               return (
-                <div key={item.dept} className="space-y-1">
+                <div key={item.dept} className="space-y-1.5">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-medium text-slate-800">{item.dept}</span>
+                    <span className="font-semibold text-slate-800">{item.dept}</span>
                     <div className="flex items-center gap-3 text-slate-500 font-mono tabular-nums">
                       <span>{item.headcount} members</span>
-                      <span aria-hidden="true">·</span>
+                      <span aria-hidden="true" className="text-slate-200">·</span>
                       <span className="font-semibold text-slate-900">{item.avgScore} / 5.00</span>
                     </div>
                   </div>
                   <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-slate-900 rounded-full"
+                      className="h-full bg-gradient-to-r from-indigo-500 via-indigo-600 to-violet-500 rounded-full transition-all duration-500 shadow-2xs shadow-indigo-500/20"
                       style={{ width: `${widthPct}%` }}
                     />
                   </div>
@@ -255,47 +267,53 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
         </div>
 
-        {/* Quick Simulator CTA */}
-        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+        {/* Quick Simulator CTA with Aesthetic Light Palette */}
+        <div className="bg-gradient-to-br from-indigo-50/70 via-white to-violet-50/60 p-6 rounded-2xl border border-indigo-150/70 shadow-[0_4px_20px_-4px_rgba(79,70,229,0.05)] flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-indigo-600" />
-              <h2 className="text-sm font-semibold text-slate-900">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white shadow-xs shadow-indigo-500/25">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <h2 className="text-sm font-semibold font-display text-slate-900">
                 What-If Predictor
               </h2>
             </div>
-            <p className="text-xs text-slate-600 mt-2 leading-relaxed">
-              Test how changes to weekly work hours, overtime, training hours, or task completion affect performance rating and attrition probability.
+            <p className="text-xs text-slate-600 mt-2.5 leading-relaxed">
+              Test how adjustments to work hours, overtime, training hours, or task completion dynamically shift performance ratings and retention probability.
             </p>
 
-            <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-200/70 text-xs text-slate-600 space-y-1.5">
-              <div className="flex justify-between">
-                <span>Peak Output:</span>
-                <strong className="text-slate-900">40 - 44 hrs/wk</strong>
+            <div className="mt-4 p-3.5 bg-white/90 backdrop-blur-xs rounded-xl border border-indigo-100/70 text-xs text-slate-600 space-y-2 shadow-2xs">
+              <div className="flex justify-between items-center">
+                <span>Peak Productivity:</span>
+                <span className="font-semibold font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded text-[11px] border border-emerald-100">
+                  40 - 44 hrs/wk
+                </span>
               </div>
-              <div className="flex justify-between">
-                <span>Fatigue Risk:</span>
-                <strong className="text-rose-600">&gt; 48 hrs/wk</strong>
+              <div className="flex justify-between items-center">
+                <span>Fatigue Risk Threshold:</span>
+                <span className="font-semibold font-mono text-rose-700 bg-rose-50 px-2 py-0.5 rounded text-[11px] border border-rose-100">
+                  &gt; 48 hrs/wk
+                </span>
               </div>
             </div>
           </div>
 
           <button
             onClick={onNavigateToPredictor}
-            className="w-full mt-6 py-2 px-4 text-xs font-semibold text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors inline-flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+            className="w-full mt-6 py-2.5 px-4 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 rounded-xl transition-all inline-flex items-center justify-center gap-1.5 cursor-pointer shadow-xs shadow-indigo-500/25 focus-visible:outline-none"
           >
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <Sparkles className="w-3.5 h-3.5 text-indigo-100" />
             <span>Launch What-If Predictor</span>
           </button>
         </div>
       </div>
 
       {/* Complete Workforce Overview Table showing ALL employees */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-200 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+      <div className="bg-white/95 backdrop-blur-xs rounded-2xl border border-indigo-100/70 shadow-[0_4px_20px_-4px_rgba(79,70,229,0.03)] overflow-hidden">
+        <div className="px-6 py-4 border-b border-indigo-100/60 flex flex-col lg:flex-row lg:items-center justify-between gap-3 bg-slate-50/50">
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-sm font-semibold text-slate-900">
+              <h2 className="text-sm font-semibold font-display text-slate-900">
                 All Workforce Profiles & Records
               </h2>
               <span className="text-xs font-mono tabular-nums text-slate-500 font-medium">
@@ -303,7 +321,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
               </span>
             </div>
             <p className="text-xs text-slate-500 mt-0.5">
-              Complete list of all employees in database. Click any row to view full competencies or edit details.
+              Click any row to inspect competencies or use actions to edit and simulate.
             </p>
           </div>
 
@@ -316,20 +334,20 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 placeholder="Search name, role, ID..."
-                className="pl-8 pr-3 py-1 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:outline-none focus:ring-1 focus:ring-slate-900 w-44"
+                className="pl-8 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 w-48 shadow-2xs placeholder:text-slate-400 transition-all"
               />
             </div>
 
             {/* Department Filter Bar */}
-            <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg text-xs overflow-x-auto">
+            <div className="flex items-center gap-1 p-1 bg-slate-100/80 rounded-xl text-xs overflow-x-auto border border-slate-200/60">
               {['All', ...DEPARTMENT_LIST].map(dept => (
                 <button
                   key={dept}
                   onClick={() => setSelectedDept(dept)}
-                  className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer whitespace-nowrap ${
+                  className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer whitespace-nowrap ${
                     selectedDept === dept
-                      ? 'bg-white text-slate-900 font-semibold shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-white text-indigo-950 font-semibold shadow-xs border border-indigo-100/60'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/60 font-medium'
                   }`}
                 >
                   {dept}
@@ -341,15 +359,15 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
         <div className="overflow-x-auto max-h-[600px] overflow-y-auto">
           <table className="w-full text-left text-xs border-collapse">
-            <thead className="sticky top-0 z-10 bg-slate-50 border-b border-slate-200 shadow-2xs">
+            <thead className="sticky top-0 z-10 bg-slate-50/95 backdrop-blur-xs border-b border-slate-200/80">
               <tr className="text-slate-600 font-medium">
-                <th className="px-5 py-3">Employee</th>
-                <th className="px-4 py-3">Department</th>
-                <th className="px-4 py-3 text-right">Score</th>
-                <th className="px-4 py-3 text-right">On-Time</th>
-                <th className="px-4 py-3 text-right">Hours</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3 text-right">Quick Actions</th>
+                <th className="px-5 py-3 font-semibold">Employee</th>
+                <th className="px-4 py-3 font-semibold">Department</th>
+                <th className="px-4 py-3 text-right font-semibold">Score</th>
+                <th className="px-4 py-3 text-right font-semibold">On-Time</th>
+                <th className="px-4 py-3 text-right font-semibold">Weekly Hours</th>
+                <th className="px-4 py-3 font-semibold">Status</th>
+                <th className="px-4 py-3 text-right font-semibold">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -364,7 +382,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                   <tr
                     key={emp.id}
                     onClick={() => onSelectEmployee(emp)}
-                    className="hover:bg-slate-50/70 transition-colors group cursor-pointer"
+                    className="hover:bg-indigo-50/30 transition-colors group cursor-pointer"
                   >
                     <td className="px-5 py-3">
                       <div className="flex items-center gap-3">
@@ -373,15 +391,15 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                             src={emp.avatar}
                             alt={emp.name}
                             referrerPolicy="no-referrer"
-                            className="w-8 h-8 rounded-lg object-cover border border-slate-200"
+                            className="w-8 h-8 rounded-xl object-cover border border-indigo-100 shadow-2xs"
                           />
                         ) : (
-                          <div className="w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center font-bold text-xs">
+                          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 text-white flex items-center justify-center font-bold text-xs shadow-2xs">
                             {emp.name.slice(0, 2).toUpperCase()}
                           </div>
                         )}
                         <div>
-                          <div className="font-semibold text-slate-900 group-hover:text-slate-800">
+                          <div className="font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">
                             {emp.name}
                           </div>
                           <div className="text-[11px] text-slate-400 font-mono">
@@ -391,7 +409,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                       </div>
                     </td>
 
-                    <td className="px-4 py-3 text-slate-700">
+                    <td className="px-4 py-3 text-slate-700 font-medium">
                       {emp.department}
                     </td>
 
@@ -399,7 +417,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                       {emp.performance_score.toFixed(2)}
                     </td>
 
-                    <td className="px-4 py-3 text-right font-mono tabular-nums text-slate-800">
+                    <td className="px-4 py-3 text-right font-mono tabular-nums text-slate-700">
                       {emp.tasks_on_time_pct}%
                     </td>
 
@@ -412,18 +430,18 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
 
                     <td className="px-4 py-3">
                       <span
-                        className={`text-xs font-medium ${
+                        className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${
                           emp.flight_risk === 'High'
-                            ? 'text-rose-600'
+                            ? 'bg-rose-50 text-rose-700 border-rose-200/70'
                             : emp.flight_risk === 'Medium'
-                            ? 'text-amber-600'
-                            : 'text-emerald-700'
+                            ? 'bg-amber-50 text-amber-700 border-amber-200/70'
+                            : 'bg-emerald-50 text-emerald-700 border-emerald-200/70'
                         }`}
                       >
                         {emp.flight_risk} Risk
                       </span>
                       {emp.promotion_ready && (
-                        <span className="text-[10px] text-indigo-600 block font-medium">
+                        <span className="text-[10px] text-indigo-700 font-semibold block mt-0.5">
                           · Promo Ready
                         </span>
                       )}
@@ -435,14 +453,14 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                         <button
                           onClick={() => onEditEmployee(emp)}
                           title="Edit Profile"
-                          className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors cursor-pointer"
+                          className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors cursor-pointer"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>
 
                         {/* Delete with confirmation */}
                         {deletingId === emp.id ? (
-                          <div className="inline-flex items-center gap-1 bg-rose-50 p-0.5 rounded border border-rose-200">
+                          <div className="inline-flex items-center gap-1 bg-rose-50 p-0.5 rounded-lg border border-rose-200">
                             <button
                               onClick={() => handleDeleteConfirm(emp.id)}
                               title="Confirm Delete"
@@ -462,7 +480,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                           <button
                             onClick={() => setDeletingId(emp.id)}
                             title="Delete Employee"
-                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-md transition-colors cursor-pointer"
+                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>

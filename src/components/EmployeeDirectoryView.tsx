@@ -66,25 +66,27 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       {/* Top Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-indigo-100/60">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-slate-900">
             Employee Profiles & Metrics
           </h1>
           <div className="flex items-center gap-2 text-xs text-slate-500 mt-1">
-            <span>Editable Workforce Database</span>
-            <span aria-hidden="true">·</span>
-            <span className="font-mono tabular-nums">{filteredEmployees.length} Total Employees</span>
-            <span aria-hidden="true">·</span>
+            <span className="font-medium text-indigo-600/80">Editable Workforce Database</span>
+            <span aria-hidden="true" className="text-slate-300">·</span>
+            <span className="font-mono tabular-nums font-semibold text-slate-700">
+              {filteredEmployees.length} Total Profiles
+            </span>
+            <span aria-hidden="true" className="text-slate-300">·</span>
             <span>Add, Edit or Remove Profiles</span>
           </div>
         </div>
 
         <button
           onClick={onOpenAddEmployee}
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer shadow-xs focus-visible:outline-none"
+          className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 rounded-xl transition-all cursor-pointer shadow-xs shadow-indigo-500/25 focus-visible:outline-none"
         >
           <Plus className="w-3.5 h-3.5" />
           <span>Add Employee</span>
@@ -92,7 +94,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+      <div className="bg-white/95 backdrop-blur-xs p-4 rounded-2xl border border-indigo-100/70 shadow-[0_4px_20px_-4px_rgba(79,70,229,0.03)] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
         <div className="relative flex-1">
           <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
@@ -100,7 +102,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
             placeholder="Search by employee name, role, or ID..."
-            className="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-slate-900"
+            className="w-full pl-9 pr-4 py-2 text-xs bg-slate-50/70 border border-slate-200/80 rounded-xl text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 shadow-2xs placeholder:text-slate-400 transition-all"
           />
         </div>
 
@@ -109,7 +111,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
           <select
             value={departmentFilter}
             onChange={e => setDepartmentFilter(e.target.value)}
-            className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 cursor-pointer focus:outline-none focus:ring-1 focus:ring-slate-900"
+            className="text-xs bg-white border border-slate-200/90 rounded-xl px-3 py-2 text-slate-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 shadow-2xs transition-all font-medium"
           >
             <option value="All">All Departments</option>
             {DEPARTMENT_LIST.map(d => (
@@ -121,7 +123,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
           <select
             value={riskFilter}
             onChange={e => setRiskFilter(e.target.value)}
-            className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 cursor-pointer focus:outline-none focus:ring-1 focus:ring-slate-900"
+            className="text-xs bg-white border border-slate-200/90 rounded-xl px-3 py-2 text-slate-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 shadow-2xs transition-all font-medium"
           >
             <option value="All">All Risk Levels</option>
             <option value="Low">Low Risk</option>
@@ -133,7 +135,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
           <select
             value={sortBy}
             onChange={e => setSortBy(e.target.value as any)}
-            className="text-xs bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 cursor-pointer focus:outline-none focus:ring-1 focus:ring-slate-900"
+            className="text-xs bg-white border border-slate-200/90 rounded-xl px-3 py-2 text-slate-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 shadow-2xs transition-all font-medium"
           >
             <option value="performance">Sort: Performance</option>
             <option value="tenure">Sort: Tenure</option>
@@ -144,7 +146,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
           <button
             onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
             title="Toggle sort direction"
-            className="p-2 text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
+            className="p-2 text-slate-600 bg-white border border-slate-200/90 rounded-xl hover:bg-slate-50 hover:text-indigo-600 transition-colors cursor-pointer shadow-2xs"
           >
             <ArrowUpDown className="w-3.5 h-3.5" />
           </button>
@@ -152,19 +154,19 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
       </div>
 
       {/* High-Density Data Grid Table */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+      <div className="bg-white/95 backdrop-blur-xs rounded-2xl border border-indigo-100/70 shadow-[0_4px_20px_-4px_rgba(79,70,229,0.03)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="bg-slate-50/80 border-b border-slate-200 text-slate-600 font-medium">
-                <th className="px-5 py-3">Employee</th>
-                <th className="px-4 py-3">Department</th>
-                <th className="px-4 py-3 text-right">Performance</th>
-                <th className="px-4 py-3 text-right">On-Time %</th>
-                <th className="px-4 py-3 text-right">Weekly & OT</th>
-                <th className="px-4 py-3 text-right">Satisfaction</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3 text-right">Actions</th>
+              <tr className="bg-slate-50/80 border-b border-slate-200/80 text-slate-600 font-medium">
+                <th className="px-5 py-3 font-semibold">Employee</th>
+                <th className="px-4 py-3 font-semibold">Department</th>
+                <th className="px-4 py-3 text-right font-semibold">Performance</th>
+                <th className="px-4 py-3 text-right font-semibold">On-Time %</th>
+                <th className="px-4 py-3 text-right font-semibold">Weekly & OT</th>
+                <th className="px-4 py-3 text-right font-semibold">Satisfaction</th>
+                <th className="px-4 py-3 font-semibold">Status</th>
+                <th className="px-4 py-3 text-right font-semibold">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -178,7 +180,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
                 filteredEmployees.map(emp => (
                   <tr
                     key={emp.id}
-                    className="hover:bg-slate-50/70 transition-colors group cursor-pointer"
+                    className="hover:bg-indigo-50/30 transition-colors group cursor-pointer"
                     onClick={() => onSelectEmployee(emp)}
                   >
                     {/* Name and avatar */}
@@ -189,15 +191,15 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
                             src={emp.avatar}
                             alt={emp.name}
                             referrerPolicy="no-referrer"
-                            className="w-8 h-8 rounded-lg object-cover border border-slate-200"
+                            className="w-8 h-8 rounded-xl object-cover border border-indigo-100 shadow-2xs"
                           />
                         ) : (
-                          <div className="w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center font-bold text-xs">
+                          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 text-white flex items-center justify-center font-bold text-xs shadow-2xs">
                             {emp.name.slice(0, 2).toUpperCase()}
                           </div>
                         )}
                         <div>
-                          <div className="font-semibold text-slate-900 group-hover:text-slate-800">
+                          <div className="font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">
                             {emp.name}
                           </div>
                           <div className="text-[11px] text-slate-400 font-mono">
@@ -208,7 +210,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
                     </td>
 
                     {/* Department */}
-                    <td className="px-4 py-3 text-slate-700">
+                    <td className="px-4 py-3 text-slate-700 font-medium">
                       {emp.department}
                     </td>
 
@@ -229,7 +231,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
                     <td className="px-4 py-3 text-right font-mono tabular-nums text-slate-600">
                       <span>{emp.avg_weekly_hours}h/wk</span>
                       {emp.overtime_hours_month > 10 && (
-                        <span className="text-[10px] text-rose-600 block">+{emp.overtime_hours_month}h OT</span>
+                        <span className="text-[10px] text-rose-600 block font-semibold">+{emp.overtime_hours_month}h OT</span>
                       )}
                     </td>
 
@@ -241,18 +243,18 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
                     {/* Status */}
                     <td className="px-4 py-3">
                       <span
-                        className={`text-xs font-medium ${
+                        className={`text-xs font-semibold px-2 py-0.5 rounded-full border ${
                           emp.flight_risk === 'High'
-                            ? 'text-rose-600'
+                            ? 'bg-rose-50 text-rose-700 border-rose-200/70'
                             : emp.flight_risk === 'Medium'
-                            ? 'text-amber-600'
-                            : 'text-emerald-700'
+                            ? 'bg-amber-50 text-amber-700 border-amber-200/70'
+                            : 'bg-emerald-50 text-emerald-700 border-emerald-200/70'
                         }`}
                       >
                         {emp.flight_risk} Risk
                       </span>
                       {emp.promotion_ready && (
-                        <span className="text-[10px] text-indigo-600 block font-medium">
+                        <span className="text-[10px] text-indigo-700 font-semibold block mt-0.5">
                           · Promo Ready
                         </span>
                       )}
@@ -265,7 +267,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
                         <button
                           onClick={() => onEditEmployee(emp)}
                           title="Edit Employee Profile"
-                          className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors cursor-pointer"
+                          className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors cursor-pointer"
                         >
                           <Edit2 className="w-3.5 h-3.5" />
                         </button>
@@ -274,14 +276,14 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
                         <button
                           onClick={() => onSimulateEmployee(emp)}
                           title="Simulate in What-If Predictor"
-                          className="p-1.5 text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50 rounded-md transition-colors cursor-pointer"
+                          className="p-1.5 text-indigo-500 hover:text-indigo-700 hover:bg-indigo-50 rounded-lg transition-colors cursor-pointer"
                         >
                           <Sparkles className="w-3.5 h-3.5" />
                         </button>
 
                         {/* Delete Button with inline confirmation */}
                         {deletingId === emp.id ? (
-                          <div className="inline-flex items-center gap-1 bg-rose-50 p-0.5 rounded border border-rose-200">
+                          <div className="inline-flex items-center gap-1 bg-rose-50 p-0.5 rounded-lg border border-rose-200">
                             <button
                               onClick={() => handleDeleteConfirm(emp.id)}
                               title="Confirm Delete"
@@ -301,7 +303,7 @@ export const EmployeeDirectoryView: React.FC<EmployeeDirectoryViewProps> = ({
                           <button
                             onClick={() => setDeletingId(emp.id)}
                             title="Delete Employee"
-                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-md transition-colors cursor-pointer"
+                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors cursor-pointer"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>

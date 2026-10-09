@@ -113,10 +113,10 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-[#F8FAFF] via-[#FAF9FD] to-[#F8FAFD] text-slate-800 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
       {/* Toast Notification */}
       {notification && (
-        <div className="fixed bottom-6 right-6 z-50 bg-slate-900 text-white text-xs px-4 py-2.5 rounded-xl shadow-lg border border-slate-700 animate-in fade-in slide-in-from-bottom-2 duration-200">
+        <div className="fixed bottom-6 right-6 z-50 bg-slate-900/95 text-white text-xs px-4 py-2.5 rounded-2xl shadow-xl shadow-slate-900/10 border border-slate-700/50 backdrop-blur-md animate-in fade-in slide-in-from-bottom-2 duration-200">
           {notification}
         </div>
       )}
@@ -190,46 +190,46 @@ export default function App() {
       />
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 bg-white py-6 mt-auto">
+      <footer className="border-t border-slate-200/60 bg-white/80 backdrop-blur-xs py-6 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            <span className="font-semibold text-slate-800">TalentPulse</span>
-            <span className="mx-2" aria-hidden="true">·</span>
+            <span className="font-semibold font-display text-slate-900">TalentPulse</span>
+            <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
             <span>Employee Performance Analysis & Predictor Platform</span>
           </div>
 
           <div className="flex items-center gap-4 text-slate-600">
             <button
               onClick={() => setActiveTab('dashboard')}
-              className="hover:text-slate-900 transition-colors cursor-pointer"
+              className="hover:text-indigo-600 transition-colors cursor-pointer"
             >
               Dashboard
             </button>
-            <span aria-hidden="true">·</span>
+            <span aria-hidden="true" className="text-slate-200">·</span>
             <button
               onClick={() => setActiveTab('directory')}
-              className="hover:text-slate-900 transition-colors cursor-pointer"
+              className="hover:text-indigo-600 transition-colors cursor-pointer"
             >
               Employees
             </button>
-            <span aria-hidden="true">·</span>
+            <span aria-hidden="true" className="text-slate-200">·</span>
             <button
               onClick={() => setActiveTab('predictor')}
-              className="hover:text-slate-900 transition-colors cursor-pointer"
+              className="hover:text-indigo-600 transition-colors cursor-pointer"
             >
               Predictor
             </button>
-            <span aria-hidden="true">·</span>
+            <span aria-hidden="true" className="text-slate-200">·</span>
             <button
               onClick={() => setActiveTab('sql_console')}
-              className="hover:text-slate-900 transition-colors cursor-pointer"
+              className="hover:text-indigo-600 transition-colors cursor-pointer"
             >
               SQL Metrics
             </button>
-            <span aria-hidden="true">·</span>
+            <span aria-hidden="true" className="text-slate-200">·</span>
             <button
               onClick={handleLogout}
-              className="text-rose-600 hover:text-rose-800 transition-colors cursor-pointer font-medium"
+              className="text-rose-500 hover:text-rose-700 transition-colors cursor-pointer font-medium"
             >
               Log Out
             </button>
